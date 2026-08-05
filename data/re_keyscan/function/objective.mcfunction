@@ -1,0 +1,27 @@
+scoreboard objectives add re_keyscan_forwardEnter dummy
+scoreboard objectives add re_keyscan_forwardOn dummy
+scoreboard objectives add re_keyscan_forwardExit dummy
+
+scoreboard objectives add re_keyscan_backwardEnter dummy
+scoreboard objectives add re_keyscan_backwardOn dummy
+scoreboard objectives add re_keyscan_backwardExit dummy
+
+scoreboard objectives add re_keyscan_rightEnter dummy
+scoreboard objectives add re_keyscan_rightOn dummy
+scoreboard objectives add re_keyscan_rightExit dummy
+
+scoreboard objectives add re_keyscan_leftEnter dummy
+scoreboard objectives add re_keyscan_leftOn dummy
+scoreboard objectives add re_keyscan_leftExit dummy
+
+scoreboard objectives add re_keyscan_jumpEnter dummy
+scoreboard objectives add re_keyscan_jumpOn dummy
+scoreboard objectives add re_keyscan_jumpExit dummy
+
+scoreboard objectives add re_keyscan_sneakEnter dummy
+scoreboard objectives add re_keyscan_sneakOn dummy
+scoreboard objectives add re_keyscan_sneakExit dummy
+
+scoreboard objectives add re_keyscan_sprintEnter dummy
+scoreboard objectives add re_keyscan_sprintOn dummy
+scoreboard objectives add re_keyscan_sprintExit dummy

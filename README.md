@@ -49,5 +49,5 @@ execute as @a if score @s re_keyscan_sprintExit matches 1 run say ダッシュ�
 
 ## 環境
 
-- pack_format 94
-- `type_specific/player` の `input` を使うため Minecraft 1.21.2 以降が必要です
+使用したいバージョンに応じてpredicateを調整してください
+現在は26.3に対応しています

@@ -1,43 +1,51 @@
-# 実行者のキー入力をスキャンしてスコアに反映します。
+#> re_keyscan:scan/
+# 実行者(プレイヤー)のキー入力をスキャンしてスコアに反映する
+# 毎tick実行する必要があります
+#
+# キーごとの手順 (7キーとも同じ):
+#   1. exit に前のtickの on を退避する
+#   2. on を今の入力で更新する
+#   3. enter = 今押していて、前は押していなかった
+#   4. exit  = 前は押していて、今は押していない
 
 # forward
-scoreboard players operation @s re_keyscan_forwardExit = @s re_keyscan_forwardOn
-execute store success score @s re_keyscan_forwardOn if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{forward:true}}}}
-execute store success score @s re_keyscan_forwardEnter if entity @s[scores={re_keyscan_forwardOn=1,re_keyscan_forwardExit=0}]
-execute store success score @s re_keyscan_forwardExit if entity @s[scores={re_keyscan_forwardExit=1,re_keyscan_forwardOn=0}]
+scoreboard players operation @s re_keyscan.forward.exit = @s re_keyscan.forward.on
+execute store success score @s re_keyscan.forward.on if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{forward:true}}}}
+execute store success score @s re_keyscan.forward.enter if score @s re_keyscan.forward.on > @s re_keyscan.forward.exit
+execute store success score @s re_keyscan.forward.exit if score @s re_keyscan.forward.exit > @s re_keyscan.forward.on
 
 # backward
-scoreboard players operation @s re_keyscan_backwardExit = @s re_keyscan_backwardOn
-execute store success score @s re_keyscan_backwardOn if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{backward:true}}}}
-execute store success score @s re_keyscan_backwardEnter if entity @s[scores={re_keyscan_backwardOn=1,re_keyscan_backwardExit=0}]
-execute store success score @s re_keyscan_backwardExit if entity @s[scores={re_keyscan_backwardExit=1,re_keyscan_backwardOn=0}]
+scoreboard players operation @s re_keyscan.backward.exit = @s re_keyscan.backward.on
+execute store success score @s re_keyscan.backward.on if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{backward:true}}}}
+execute store success score @s re_keyscan.backward.enter if score @s re_keyscan.backward.on > @s re_keyscan.backward.exit
+execute store success score @s re_keyscan.backward.exit if score @s re_keyscan.backward.exit > @s re_keyscan.backward.on
 
 # right
-scoreboard players operation @s re_keyscan_rightExit = @s re_keyscan_rightOn
-execute store success score @s re_keyscan_rightOn if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{right:true}}}}
-execute store success score @s re_keyscan_rightEnter if entity @s[scores={re_keyscan_rightOn=1,re_keyscan_rightExit=0}]
-execute store success score @s re_keyscan_rightExit if entity @s[scores={re_keyscan_rightExit=1,re_keyscan_rightOn=0}]
+scoreboard players operation @s re_keyscan.right.exit = @s re_keyscan.right.on
+execute store success score @s re_keyscan.right.on if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{right:true}}}}
+execute store success score @s re_keyscan.right.enter if score @s re_keyscan.right.on > @s re_keyscan.right.exit
+execute store success score @s re_keyscan.right.exit if score @s re_keyscan.right.exit > @s re_keyscan.right.on
 
 # left
-scoreboard players operation @s re_keyscan_leftExit = @s re_keyscan_leftOn
-execute store success score @s re_keyscan_leftOn if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{left:true}}}}
-execute store success score @s re_keyscan_leftEnter if entity @s[scores={re_keyscan_leftOn=1,re_keyscan_leftExit=0}]
-execute store success score @s re_keyscan_leftExit if entity @s[scores={re_keyscan_leftExit=1,re_keyscan_leftOn=0}]
+scoreboard players operation @s re_keyscan.left.exit = @s re_keyscan.left.on
+execute store success score @s re_keyscan.left.on if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{left:true}}}}
+execute store success score @s re_keyscan.left.enter if score @s re_keyscan.left.on > @s re_keyscan.left.exit
+execute store success score @s re_keyscan.left.exit if score @s re_keyscan.left.exit > @s re_keyscan.left.on
 
 # jump
-scoreboard players operation @s re_keyscan_jumpExit = @s re_keyscan_jumpOn
-execute store success score @s re_keyscan_jumpOn if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{jump:true}}}}
-execute store success score @s re_keyscan_jumpEnter if entity @s[scores={re_keyscan_jumpOn=1,re_keyscan_jumpExit=0}]
-execute store success score @s re_keyscan_jumpExit if entity @s[scores={re_keyscan_jumpExit=1,re_keyscan_jumpOn=0}]
+scoreboard players operation @s re_keyscan.jump.exit = @s re_keyscan.jump.on
+execute store success score @s re_keyscan.jump.on if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{jump:true}}}}
+execute store success score @s re_keyscan.jump.enter if score @s re_keyscan.jump.on > @s re_keyscan.jump.exit
+execute store success score @s re_keyscan.jump.exit if score @s re_keyscan.jump.exit > @s re_keyscan.jump.on
 
 # sneak
-scoreboard players operation @s re_keyscan_sneakExit = @s re_keyscan_sneakOn
-execute store success score @s re_keyscan_sneakOn if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{sneak:true}}}}
-execute store success score @s re_keyscan_sneakEnter if entity @s[scores={re_keyscan_sneakOn=1,re_keyscan_sneakExit=0}]
-execute store success score @s re_keyscan_sneakExit if entity @s[scores={re_keyscan_sneakExit=1,re_keyscan_sneakOn=0}]
+scoreboard players operation @s re_keyscan.sneak.exit = @s re_keyscan.sneak.on
+execute store success score @s re_keyscan.sneak.on if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{sneak:true}}}}
+execute store success score @s re_keyscan.sneak.enter if score @s re_keyscan.sneak.on > @s re_keyscan.sneak.exit
+execute store success score @s re_keyscan.sneak.exit if score @s re_keyscan.sneak.exit > @s re_keyscan.sneak.on
 
 # sprint
-scoreboard players operation @s re_keyscan_sprintExit = @s re_keyscan_sprintOn
-execute store success score @s re_keyscan_sprintOn if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{sprint:true}}}}
-execute store success score @s re_keyscan_sprintEnter if entity @s[scores={re_keyscan_sprintOn=1,re_keyscan_sprintExit=0}]
-execute store success score @s re_keyscan_sprintExit if entity @s[scores={re_keyscan_sprintExit=1,re_keyscan_sprintOn=0}]
+scoreboard players operation @s re_keyscan.sprint.exit = @s re_keyscan.sprint.on
+execute store success score @s re_keyscan.sprint.on if predicate {type:"entity_properties",entity:"this",predicate:{"type_specific/player":{input:{sprint:true}}}}
+execute store success score @s re_keyscan.sprint.enter if score @s re_keyscan.sprint.on > @s re_keyscan.sprint.exit
+execute store success score @s re_keyscan.sprint.exit if score @s re_keyscan.sprint.exit > @s re_keyscan.sprint.on
